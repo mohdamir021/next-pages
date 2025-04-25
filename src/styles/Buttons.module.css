@@ -1,0 +1,9 @@
+.main-button {
+  background-color: var(--main);
+  color: white;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin: 2px;
+}

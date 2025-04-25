@@ -7,6 +7,11 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    /* Custom colors */
+    --main: #8815cf;
+    --main-light: #d899ff;
+    --main-dark: #400068;
+    --main-dark: #400068;
   }
 }
 
