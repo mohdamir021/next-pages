@@ -1,3 +1,4 @@
+import LoginForm from "@/components/login/LoginForm";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import React, { CSSProperties } from "react";
 
@@ -21,15 +22,24 @@ const rightBoxStyle: CSS = {
   textAlign: "center",
 };
 
-const leftBoxStyle: CSS = {
-  width: "50%",
+const contentBoxStyle: CSS = {
   height: "100%",
   padding: "8px",
   background: "white",
   justifyContent: "center",
   alignItems: "center",
   borderRadius: "8px",
+}
+
+const leftBoxStyle: CSS = {
+  ...contentBoxStyle,
+  width: "50%",
 };
+
+const fullBoxStyle: CSS = {
+  ...contentBoxStyle,
+  width: "100%",
+}
 
 const login = () => {
   const { isMobile, isTablet, isDesktop } = useBreakpoint();
@@ -37,14 +47,18 @@ const login = () => {
   return (
     <div style={bgStyle}>
       {isMobile ? (
-        <></>
+        <div style={fullBoxStyle}>
+          <LoginForm />
+        </div>
       ) : (
         <>
           {/* Left Box */}
           <div style={rightBoxStyle}>
             <h1>Login</h1>
           </div>
-          <div style={leftBoxStyle}></div>
+          <div style={leftBoxStyle}>
+            <LoginForm />
+          </div>
         </>
       )}
     </div>
