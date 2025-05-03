@@ -29,7 +29,7 @@ const contentBoxStyle: CSS = {
   justifyContent: "center",
   alignItems: "center",
   borderRadius: "8px",
-}
+};
 
 const leftBoxStyle: CSS = {
   ...contentBoxStyle,
@@ -39,28 +39,19 @@ const leftBoxStyle: CSS = {
 const fullBoxStyle: CSS = {
   ...contentBoxStyle,
   width: "100%",
-}
+};
 
 const login = () => {
   const { isMobile, isTablet, isDesktop } = useBreakpoint();
 
   return (
     <div style={bgStyle}>
-      {isMobile ? (
-        <div style={fullBoxStyle}>
-          <LoginForm />
-        </div>
-      ) : (
-        <>
-          {/* Left Box */}
-          <div style={rightBoxStyle}>
-            <h1>Login</h1>
-          </div>
-          <div style={leftBoxStyle}>
-            <LoginForm />
-          </div>
-        </>
-      )}
+      <div style={isMobile ? {display: "none"} :rightBoxStyle}>
+        <h1>Login</h1>
+      </div>
+      <div style={isMobile ? fullBoxStyle :leftBoxStyle}>
+        <LoginForm />
+      </div>
     </div>
   );
 };

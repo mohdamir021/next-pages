@@ -7,6 +7,7 @@ interface ButtonProps {
   children: React.ReactNode;
   id: string
   handleClick?: Function
+  isConsole?: boolean
 }
 
 // Use `type` for this specific case
@@ -14,14 +15,14 @@ type ButtonComponent = React.FunctionComponent<ButtonProps>;
 
 const Button: ButtonComponent = (props) => {
   // props
-  const { style, className, children } = props;
+  const { style, className, children, isConsole} = props;
 
   // states
   const [count, setCount] = React.useState<number>(0);
 
   // handlers
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    console.log("Button is clicked");
+    isConsole && console.log("Button is clicked");
     // Update count
     setCount((prev) => prev + 1);
 
@@ -30,15 +31,15 @@ const Button: ButtonComponent = (props) => {
 
   // effects
   React.useEffect(() => {
-    console.log(`[${props.id}]`)
-    console.log("Effect on every render");
+    isConsole && console.log(`[${props.id}]`)
+    isConsole && console.log("Effect on every render");
   });
   React.useEffect(() => {
-    console.log("Effect on count updating, count = ", count);
+    isConsole && console.log("Effect on count updating, count = ", count);
   }, [count]);
   React.useEffect(() => {
-    console.log("Effect on first render");
-    console.log(
+    isConsole && console.log("Effect on first render");
+    isConsole && console.log(
       "================================================================="
     );
   }, []);
@@ -54,7 +55,7 @@ export default Button;
 
 const ButtonExplained: ButtonComponent = (props) => {
   // Deconstruct object -> only objects that are not optional | undefined
-  const { style, className, children } = props;
+  const { style, className, children, isConsole } = props;
 
   // states
   const [count, setCount] = React.useState<number>(0);
@@ -64,7 +65,7 @@ const ButtonExplained: ButtonComponent = (props) => {
    * being passed to props
    */
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
-    console.log("Button is clicked");
+    isConsole && console.log("Button is clicked");
 
     // State Update 1 - This will only set the value of count + 1
     setCount(count + 1);
@@ -109,19 +110,19 @@ const ButtonExplained: ButtonComponent = (props) => {
    * No dependencies passed
    */
   React.useEffect(() => {
-    console.log("Effect on every render");
+    isConsole && console.log("Effect on every render");
   });
   /**
    * 1 dependencies passed - count
    */
   React.useEffect(() => {
-    console.log("Effect on count updating, count = ", count);
+    isConsole && console.log("Effect on count updating, count = ", count);
   }, [count]);
   /**
    * Empty dependencies passed
    */
   React.useEffect(() => {
-    console.log("Effect on first render");
+    isConsole && console.log("Effect on first render");
   }, []);
 
   return (

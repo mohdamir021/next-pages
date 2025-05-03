@@ -2,6 +2,8 @@ import Head from "next/head";
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import styles from "@/styles/Home.module.css";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,6 +16,15 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
+
+  // add redirect here:
+  const router = useRouter();
+  useEffect(()=> {
+    if(router.isReady){
+      router.push("/login")
+    }
+  }, [router.isReady])
+
   return (
     <>
       <Head>
