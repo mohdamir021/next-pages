@@ -6,8 +6,12 @@ import { apiHandler } from "@/services/index";
 import { authService } from "@/services/next-api/auth";
 import { useAppToast } from "@/libs/toast";
 import { useRouter } from "next/router";
+import { useUserContext } from "@/context/UserContext";
 
 export default function LoginForm() {
+  // user context
+  const [userCtx, setUserCtx] = useUserContext();
+
   const [type, setType] = useState<"login" | "register">("login");
   const toggleType = () => setType(type === "login" ? "register" : "login");
 
@@ -28,6 +32,9 @@ export default function LoginForm() {
         : authService.login(data));
 
         if(response) {
+          // set user context
+          setUserCtx({...userCtx, user: response?.user})
+
           showToast({
             title: "Success",
             description: "Login successful",
@@ -60,6 +67,8 @@ export default function LoginForm() {
     >
       <h1
         style={{
+          fontSize: "18px",
+          fontWeight: 700,
           margin: "8px 4px",
           color: "var(--main)",
         }}
