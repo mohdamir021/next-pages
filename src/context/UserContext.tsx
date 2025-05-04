@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 // UserContextValue
 interface UserContextValue {
@@ -25,3 +25,5 @@ export const UserContextProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return <UserContext.Provider value={[user, setUser]}>{children}</UserContext.Provider>;
 };
+
+export const useUserContext = () => useContext(UserContext);
