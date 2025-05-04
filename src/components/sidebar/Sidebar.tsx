@@ -1,4 +1,13 @@
-import { Box, Flex, Heading, HStack, Stack, Text, TextProps, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Heading,
+  HStack,
+  Stack,
+  Text,
+  TextProps,
+  VStack,
+} from "@chakra-ui/react";
 import React, { ReactElement } from "react";
 import { FcEngineering } from "react-icons/fc";
 
@@ -6,7 +15,7 @@ type SidebarButton = {
   label: string;
 } & Partial<{
   leftElement: ReactElement;
-  onClick: Function;
+  onClick: React.MouseEventHandler;
   labelProps: TextProps;
 }>;
 
@@ -30,8 +39,15 @@ export default function Sidebar({
       </VStack>
 
       {/* Sidebar Buttons */}
-      {menus.map(({label, labelProps, leftElement, onClick}, index) => (
-        <HStack px={"8px"} py={"8px"} bg={"blue"}>
+      {menus.map(({ label, labelProps, leftElement, onClick }, index) => (
+        <HStack
+          key={`${index}_${label}`}
+          px={"8px"}
+          py={"8px"}
+          bg={"blue"}
+          onClick={onClick}
+          cursor={"pointer"}
+        >
           {leftElement}
           <Text {...labelProps}>{label}</Text>
         </HStack>
