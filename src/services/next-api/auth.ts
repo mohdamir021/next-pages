@@ -19,6 +19,7 @@ export const authService = {
       return response;
     } catch (error) {
       console.log(error)
+      throw error;
     }
   },
   register: async (data: Record<string, unknown>) => {
@@ -32,6 +33,7 @@ export const authService = {
       return response;
     } catch (error) {
       console.log(error)
+      throw error;
     }
   },
   logout: async () => {
@@ -48,6 +50,7 @@ export const authService = {
       return response;
     } catch (error) {
       console.log(error)
+      throw error;
     }
   }
 }
