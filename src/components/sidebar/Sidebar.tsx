@@ -1,3 +1,4 @@
+import { SidebarButton } from "@/interfaces";
 import {
   Box,
   Flex,
@@ -10,14 +11,6 @@ import {
 } from "@chakra-ui/react";
 import React, { ReactElement } from "react";
 import { FcEngineering } from "react-icons/fc";
-
-type SidebarButton = {
-  label: string;
-} & Partial<{
-  leftElement: ReactElement;
-  onClick: React.MouseEventHandler;
-  labelProps: TextProps;
-}>;
 
 interface SidebarProps {
   topElement?: ReactElement;
@@ -39,19 +32,28 @@ export default function Sidebar({
       </VStack>
 
       {/* Sidebar Buttons */}
-      {menus.map(({ label, labelProps, leftElement, onClick }, index) => (
-        <HStack
-          key={`${index}_${label}`}
-          px={"8px"}
-          py={"8px"}
-          bg={"blue"}
-          onClick={onClick}
-          cursor={"pointer"}
-        >
-          {leftElement}
-          <Text {...labelProps}>{label}</Text>
-        </HStack>
-      ))}
+      <Stack gap={"2px"} px={2} py={1}>
+        {menus.map(({ label, labelProps, leftElement, onClick }, index) => (
+          <HStack
+            key={`${index}_${label}`}
+            px={"8px"}
+            py={"8px"}
+            bg={"blue"}
+            onClick={onClick}
+            cursor={"pointer"}
+            borderRadius={"8px"}
+            fontWeight={600}
+            _hover={{ 
+              bg: "var(--main-light)",
+              transition: "ease 0.3s",
+              color: "black",
+             }}
+          >
+            {leftElement}
+            <Text {...labelProps}>{label}</Text>
+          </HStack>
+        ))}
+      </Stack>
     </Stack>
   );
 }
