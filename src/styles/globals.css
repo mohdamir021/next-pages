@@ -8,10 +8,13 @@
     --background: #0a0a0a;
     --foreground: #ededed;
     /* Custom colors */
-    --main: #8815cf;
+    /* --main: #8815cf;
     --main-light: #d899ff;
     --main-dark: #400068;
-    --main-dark: #400068;
+    --main-dark: #400068; */
+    --main: #95263A;
+    --main-light: #a17c82;
+    --main-dark: #5a1320;
   }
 }
 
