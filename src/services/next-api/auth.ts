@@ -42,11 +42,12 @@ export const authService = {
   loggedUser: async () => {
     try {
       const token = await apiHandler.getAuthToken();
-      const response = await apiHandler.get('/logged-user',undefined, {
+      const reqOptions = {
         headers: {
           "Authorization": `Bearer ${token}`,
         }
-      });
+      }
+      const response = await apiHandler.get('/logged-user',undefined, reqOptions);
       return response;
     } catch (error) {
       console.log(error)
